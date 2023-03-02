@@ -32,41 +32,30 @@ public class ComplexNumber {
         return real + " - " + Math.abs(imaginary) + "i";
 
     }
-
-    public static ComplexNumber addition(ComplexNumber number1, ComplexNumber number2) {
-        double real = number1.getReal() + number2.getReal();
-        double imaginary = number1.getImaginary() + number2.getImaginary();
+    public ComplexNumber getLinked() {
+        return new ComplexNumber(real, imaginary*(-1));
+    }
+    public ComplexNumber add(ComplexNumber number) {
+        real += number.getReal();
+        imaginary += number.getImaginary();
         return new ComplexNumber(real, imaginary);
     }
 
-    /**
-     * @param minuend    - уменьшаемое
-     * @param deductible - вычитаемое
-     * @return - разность
-     */
-    public static ComplexNumber subtraction(ComplexNumber minuend, ComplexNumber deductible) {
-        double real = minuend.getReal() - deductible.getReal();
-        double imaginary = minuend.getImaginary() - deductible.getImaginary();
+    public ComplexNumber subtract(ComplexNumber number) {
+        real -= number.getReal();
+        imaginary -= number.getImaginary();
         return new ComplexNumber(real, imaginary);
     }
 
-    public static ComplexNumber multiplication(ComplexNumber number1, ComplexNumber number2) {
-        double real = (number1.getReal() * number2.getReal()) + (number1.getImaginary() * number2.getImaginary() * -1);
-        double imaginary = (number1.getReal() * number2.getImaginary()) + (number1.getImaginary() * number2.getReal());
+    public ComplexNumber multiply(ComplexNumber number) {
+        real = (real * number.getReal()) + (imaginary * number.getImaginary());
+        imaginary = (real * number.getImaginary()) + (imaginary * number.getReal());
         return new ComplexNumber(real, imaginary);
     }
 
-    /**
-     *
-     * @param divisible - делимое
-     * @param divider - делитель
-     * @return - частное
-     */
-    public static ComplexNumber division(ComplexNumber divisible, ComplexNumber divider) {
-        ComplexNumber linked = new ComplexNumber(divider.getReal(), divider.getImaginary());
-        linked.setImaginary(linked.getImaginary() * (-1));
-        ComplexNumber numerator = multiplication(divisible, linked);
-        ComplexNumber denominator = multiplication(divider, linked);
+    public ComplexNumber divide(ComplexNumber number) {
+        ComplexNumber numerator = multiply(getLinked());
+        ComplexNumber denominator = number.multiply(getLinked());
         double intDenominator = denominator.getReal() + denominator.getImaginary();
         return new ComplexNumber(numerator.getReal()/intDenominator, numerator.getImaginary()/intDenominator);
 
