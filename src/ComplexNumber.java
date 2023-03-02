@@ -1,14 +1,23 @@
 public class ComplexNumber {
     private double real;
     private double imaginary;
+    private double module;
+
+    public ComplexNumber(double real, double imaginary) {
+        this.real = real;
+        this.imaginary = imaginary;
+        this.module = Math.sqrt((real * real) + (imaginary * imaginary));
+    }
+
+    public double getModule() {
+        return module;
+    }
+
 
     public double getReal() {
         return real;
     }
 
-    public void setReal(double real) {
-        this.real = real;
-    }
 
     public double getImaginary() {
         return imaginary;
@@ -18,9 +27,12 @@ public class ComplexNumber {
         this.imaginary = imaginary;
     }
 
-    public ComplexNumber(double real, double imaginary) {
-        this.real = real;
-        this.imaginary = imaginary;
+    public double getCos() {
+        return real / getModule();
+    }
+
+    public double getSin() {
+        return imaginary / getModule();
     }
 
     public String toString() {
@@ -32,9 +44,11 @@ public class ComplexNumber {
         return real + " - " + Math.abs(imaginary) + "i";
 
     }
+
     public ComplexNumber getLinked() {
-        return new ComplexNumber(real, imaginary*(-1));
+        return new ComplexNumber(real, imaginary * (-1));
     }
+
     public ComplexNumber add(ComplexNumber number) {
         real += number.getReal();
         imaginary += number.getImaginary();
@@ -57,7 +71,7 @@ public class ComplexNumber {
         ComplexNumber numerator = multiply(getLinked());
         ComplexNumber denominator = number.multiply(getLinked());
         double intDenominator = denominator.getReal() + denominator.getImaginary();
-        return new ComplexNumber(numerator.getReal()/intDenominator, numerator.getImaginary()/intDenominator);
+        return new ComplexNumber(numerator.getReal() / intDenominator, numerator.getImaginary() / intDenominator);
 
     }
 }
