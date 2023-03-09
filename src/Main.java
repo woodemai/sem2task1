@@ -5,6 +5,8 @@ public class Main {
         System.out.println("The number: " + number1);
         System.out.println("Cos: " + number1.getCos());
         System.out.println("Sin: " + number1.getSin());
+        System.out.println("Sh: " + number1.getSh());
+        System.out.println("Ch: " + number1.getCh());
         System.out.println("Module: " + number1.getModule());
         System.out.println("Linked: " + number1.getLinked());
         System.out.println("Addition: " + number1.add(number2));

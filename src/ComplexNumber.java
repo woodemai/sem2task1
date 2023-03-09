@@ -1,16 +1,14 @@
 public class ComplexNumber {
-    private double real;
+    private final double real;
     private double imaginary;
-    private double module;
 
     public ComplexNumber(double real, double imaginary) {
         this.real = real;
         this.imaginary = imaginary;
-        this.module = Math.sqrt((real * real) + (imaginary * imaginary));
     }
 
     public double getModule() {
-        return module;
+        return Math.sqrt((real * real) + (imaginary * imaginary));
     }
 
 
@@ -27,12 +25,18 @@ public class ComplexNumber {
         this.imaginary = imaginary;
     }
 
-    public double getCos() {
-        return real / getModule();
+    public ComplexNumber getCos() {
+        return ComplexMath.getCos(this);
     }
 
-    public double getSin() {
-        return imaginary / getModule();
+    public ComplexNumber getSin() {
+        return ComplexMath.getSin(this);
+    }
+    public ComplexNumber getCh() {
+        return ComplexMath.getCh(this);
+    }
+    public ComplexNumber getSh() {
+        return ComplexMath.getSh(this);
     }
 
     public String toString() {
@@ -50,21 +54,21 @@ public class ComplexNumber {
     }
 
     public ComplexNumber add(ComplexNumber number) {
-        real += number.getReal();
-        imaginary += number.getImaginary();
-        return new ComplexNumber(real, imaginary);
+        double anotherReal = this.real + number.getReal();
+        double anotherImaginary = this.imaginary + number.getImaginary();
+        return new ComplexNumber(anotherReal, anotherImaginary);
     }
 
     public ComplexNumber subtract(ComplexNumber number) {
-        real -= number.getReal();
-        imaginary -= number.getImaginary();
-        return new ComplexNumber(real, imaginary);
+        double anotherReal = this.real - number.getReal();
+        double anotherImaginary = this.imaginary - number.getImaginary();
+        return new ComplexNumber(anotherReal, anotherImaginary);
     }
 
     public ComplexNumber multiply(ComplexNumber number) {
-        real = (real * number.getReal()) + (imaginary * number.getImaginary());
-        imaginary = (real * number.getImaginary()) + (imaginary * number.getReal());
-        return new ComplexNumber(real, imaginary);
+        double anotherReal = (real * number.getReal()) + (imaginary * number.getImaginary());
+        double anotherImaginary = (real * number.getImaginary()) + (imaginary * number.getReal());
+        return new ComplexNumber(anotherReal, anotherImaginary);
     }
 
     public ComplexNumber divide(ComplexNumber number) {

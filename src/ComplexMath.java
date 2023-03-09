@@ -36,4 +36,25 @@ public class ComplexMath {
         return new ComplexNumber(numerator.getReal()/intDenominator, numerator.getImaginary()/intDenominator);
 
     }
+    public static ComplexNumber getCos(ComplexNumber number) {
+        double real = Math.cos(number.getReal())*Math.cosh(number.getImaginary());
+        double imaginary =  (-1) * Math.sin(number.getReal()) * Math.sinh(number.getImaginary());
+        return new ComplexNumber(real, imaginary);
+    }
+
+    public static ComplexNumber getSin(ComplexNumber number) {
+        double real =Math.sin(number.getReal())*Math.cosh(number.getImaginary());
+        double imaginary =Math.cos(number.getReal()) * Math.sinh(number.getImaginary());
+        return new ComplexNumber(real, imaginary);
+    }
+    public static ComplexNumber getCh(ComplexNumber number) {
+        double real =Math.cosh(number.getReal())*Math.cos(number.getImaginary());
+        double imaginary =Math.sinh(number.getReal()) * Math.sin(number.getImaginary());
+        return new ComplexNumber(real, imaginary);
+    }
+    public static ComplexNumber getSh(ComplexNumber number) {
+        double real =Math.sinh(number.getReal())*Math.cos(number.getImaginary());
+        double imaginary =Math.cosh(number.getReal()) * Math.sin(number.getImaginary());
+        return new ComplexNumber(real, imaginary);
+    }
 }
